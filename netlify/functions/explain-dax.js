@@ -49,7 +49,7 @@ Always respond in this EXACT JSON format (no markdown, pure JSON):
         'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
-        model: 'claude-opus-4-6',
+        model: 'claude-3-5-sonnet-20241022',
         max_tokens: 1000,
         system: systemPrompt,
         messages: [
