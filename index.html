@@ -19,47 +19,44 @@
     --white: #ffffff;
     --shadow: 0 4px 12px rgba(30, 58, 138, 0.08);
     --shadow-lg: 0 10px 25px rgba(30, 58, 138, 0.12);
+    --green: #059669;
+    --green-light: #ecfdf5;
   }
-
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  html, body {
-    height: 100%;
-  }
-
+ 
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+ 
   body {
     background: linear-gradient(135deg, var(--light-blue) 0%, #dbeafe 100%);
     color: var(--text-dark);
     font-family: 'Poppins', sans-serif;
     min-height: 100vh;
   }
-
-  /* Header */
+ 
+  /* ── HEADER ── */
   header {
     background: var(--white);
-    padding: 28px 40px;
+    padding: 24px 40px;
     box-shadow: var(--shadow);
     border-bottom: 3px solid var(--navy);
   }
-
+ 
   .header-content {
     max-width: 1400px;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
   }
-
+ 
   .logo {
     display: flex;
     align-items: center;
     gap: 16px;
   }
-
+ 
   .logo-icon {
     width: 44px;
     height: 44px;
@@ -68,74 +65,127 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 700;
     color: var(--white);
   }
-
-  .logo-text {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .logo-title {
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--navy);
-    line-height: 1;
-  }
-
-  .logo-subtitle {
-    font-size: 12px;
-    color: var(--text-muted);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-
+ 
+  .logo-title { font-size: 22px; font-weight: 700; color: var(--navy); line-height: 1; }
+  .logo-subtitle { font-size: 11px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; }
+ 
   .status {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     padding: 8px 16px;
-    background: #ecfdf5;
+    background: var(--green-light);
     border-radius: 8px;
     font-size: 13px;
-    color: #047857;
+    color: var(--green);
     font-weight: 500;
   }
-
+ 
   .status-dot {
-    width: 8px;
-    height: 8px;
+    width: 8px; height: 8px;
     border-radius: 50%;
-    background: #10b981;
-    animation: pulse 2s ease-in-out infinite;
+    background: var(--green);
+    animation: blink 2s ease-in-out infinite;
   }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
+ 
+  @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+ 
+  /* ── MODE TOGGLE ── */
+  .mode-bar {
+    max-width: 1400px;
+    margin: 32px auto 0;
+    padding: 0 40px;
   }
-
-  /* Main Container */
+ 
+  .toggle-wrapper {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 20px 28px;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+ 
+  .toggle-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+ 
+  .toggle-switch {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: var(--sky-blue);
+    border-radius: 12px;
+    padding: 4px;
+    position: relative;
+  }
+ 
+  .toggle-option {
+    padding: 10px 24px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 1;
+    color: var(--text-muted);
+    border: none;
+    background: none;
+    font-family: 'Poppins', sans-serif;
+    white-space: nowrap;
+  }
+ 
+  .toggle-option.active {
+    background: var(--white);
+    color: var(--navy);
+    box-shadow: var(--shadow);
+  }
+ 
+  .toggle-option.active.dax-to-en { color: var(--navy); }
+  .toggle-option.active.en-to-dax { color: var(--green); }
+ 
+  .arrow-icon {
+    font-size: 18px;
+    color: var(--text-muted);
+    font-weight: 900;
+    padding: 0 4px;
+  }
+ 
+  .mode-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+ 
+  .mode-desc strong { color: var(--navy); }
+ 
+  /* ── MAIN ── */
   main {
     max-width: 1400px;
-    margin: 40px auto;
+    margin: 28px auto 40px;
     padding: 0 40px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 32px;
-    min-height: calc(100vh - 180px);
+    gap: 28px;
   }
-
+ 
   @media (max-width: 1024px) {
-    main {
-      grid-template-columns: 1fr;
-      padding: 0 20px;
-    }
+    main { grid-template-columns: 1fr; padding: 0 20px; }
+    .mode-bar { padding: 0 20px; }
   }
-
-  /* Panels */
+ 
+  /* ── PANELS ── */
   .panel {
     background: var(--white);
     border-radius: 16px;
@@ -144,29 +194,36 @@
     display: flex;
     flex-direction: column;
   }
-
+ 
   .panel-header {
-    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
-    padding: 24px 28px;
+    padding: 20px 28px;
     color: var(--white);
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     letter-spacing: -0.5px;
+    transition: background 0.4s;
   }
-
+ 
+  .panel-header.mode-explain {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
+  }
+ 
+  .panel-header.mode-generate {
+    background: linear-gradient(135deg, #065f46 0%, var(--green) 100%);
+  }
+ 
   .panel-content {
     flex: 1;
-    padding: 32px;
+    padding: 28px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 18px;
     overflow-y: auto;
   }
-
-  /* Input Elements */
+ 
   textarea {
     flex: 1;
-    min-height: 280px;
+    min-height: 260px;
     padding: 16px;
     border: 2px solid var(--sky-blue);
     border-radius: 12px;
@@ -177,40 +234,39 @@
     resize: none;
     outline: none;
     background: #fafafa;
-    transition: all 0.3s ease;
+    transition: all 0.3s;
   }
-
+ 
   textarea:focus {
     border-color: var(--navy);
     background: var(--white);
-    box-shadow: 0 0 0 4px rgba(30, 58, 138, 0.1);
+    box-shadow: 0 0 0 4px rgba(30, 58, 138, 0.08);
   }
-
-  textarea::placeholder {
-    color: var(--text-muted);
+ 
+  textarea.green-focus:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.08);
   }
-
-  /* Labels */
+ 
+  textarea::placeholder { color: var(--text-muted); }
+ 
   .input-label {
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 11px;
+    font-weight: 700;
     color: var(--navy);
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
-    margin-top: 8px;
   }
-
+ 
+  .input-label.green { color: var(--green); }
+ 
   /* Examples */
-  .examples {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
+  .examples { display: flex; flex-wrap: wrap; gap: 8px; }
+ 
   .example-btn {
-    padding: 8px 16px;
+    padding: 6px 14px;
     background: var(--sky-blue);
-    border: 2px solid var(--sky);
+    border: 1.5px solid var(--sky);
     border-radius: 8px;
     color: var(--navy);
     font-size: 12px;
@@ -219,13 +275,17 @@
     transition: all 0.2s;
     font-family: 'Poppins', sans-serif;
   }
-
-  .example-btn:hover {
-    background: var(--sky);
-    color: var(--white);
+ 
+  .example-btn:hover { background: var(--sky); color: var(--white); }
+ 
+  .example-btn.green-ex {
+    background: var(--green-light);
+    border-color: #6ee7b7;
+    color: var(--green);
   }
-
-  /* Select Dropdown */
+ 
+  .example-btn.green-ex:hover { background: var(--green); color: var(--white); }
+ 
   select {
     padding: 12px 14px;
     border: 2px solid var(--sky-blue);
@@ -239,158 +299,120 @@
     outline: none;
     transition: all 0.2s;
   }
-
-  select:hover {
-    border-color: var(--navy);
-  }
-
-  select:focus {
-    border-color: var(--navy);
-    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
-  }
-
-  /* Controls */
-  .controls {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-
+ 
+  select:focus { border-color: var(--navy); }
+ 
+  /* Buttons */
   .btn {
-    flex: 1;
-    min-width: 140px;
     padding: 14px 24px;
-    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
-    color: var(--white);
     border: none;
     border-radius: 10px;
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
     font-weight: 700;
-    letter-spacing: 0.5px;
     cursor: pointer;
     transition: all 0.3s;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
+  }
+ 
+  .btn-navy {
+    background: linear-gradient(135deg, var(--navy), var(--navy-dark));
+    color: var(--white);
     box-shadow: 0 4px 12px rgba(30, 58, 138, 0.2);
   }
-
-  .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(30, 58, 138, 0.3);
+ 
+  .btn-navy:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(30, 58, 138, 0.3); }
+ 
+  .btn-green {
+    background: linear-gradient(135deg, #065f46, var(--green));
+    color: var(--white);
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.2);
   }
-
-  .btn:active {
-    transform: translateY(0);
-  }
-
-  .btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none;
-  }
-
+ 
+  .btn-green:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(5, 150, 105, 0.3); }
+ 
+  .btn:active { transform: translateY(0); }
+  .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+ 
   .spinner {
-    width: 14px;
-    height: 14px;
-    border: 2.5px solid rgba(255, 255, 255, 0.3);
+    width: 14px; height: 14px;
+    border: 2.5px solid rgba(255,255,255,0.3);
     border-top-color: var(--white);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
   }
-
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
-
-  .spinner.hidden {
-    display: none;
-  }
-
-  /* Output Area */
-  .output-content {
-    flex: 1;
-    overflow-y: auto;
-  }
-
+ 
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .spinner.hidden { display: none; }
+ 
+  /* Output */
+  .output-content { flex: 1; overflow-y: auto; }
+ 
   .empty-state {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%;
+    min-height: 300px;
     color: var(--text-muted);
     text-align: center;
-    gap: 16px;
+    gap: 14px;
   }
-
-  .empty-icon {
-    font-size: 56px;
-    opacity: 0.3;
-  }
-
-  .empty-text {
-    font-size: 14px;
-    line-height: 1.6;
-  }
-
-  /* Result Sections */
-  #result {
-    display: none;
-  }
-
+ 
+  .empty-icon { font-size: 52px; opacity: 0.3; }
+  .empty-text { font-size: 14px; line-height: 1.6; }
+ 
+  /* Result */
+  #result { display: none; }
   #result.visible {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
     animation: fadeUp 0.4s ease;
   }
-
+ 
   @keyframes fadeUp {
-    from {
-      opacity: 0;
-      transform: translateY(16px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity:0; transform: translateY(14px); }
+    to   { opacity:1; transform: translateY(0); }
   }
-
+ 
   .result-section {
-    background: linear-gradient(135deg, var(--light-blue) 0%, var(--sky-blue) 100%);
+    background: linear-gradient(135deg, var(--light-blue), var(--sky-blue));
     border: 2px solid var(--sky);
     border-radius: 12px;
     overflow: hidden;
   }
-
+ 
+  .result-section.green-section {
+    background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+    border-color: #6ee7b7;
+  }
+ 
   .result-header {
-    padding: 14px 18px;
+    padding: 12px 18px;
     background: var(--sky);
     color: var(--white);
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 1.5px;
     text-transform: uppercase;
   }
-
+ 
+  .result-header.green-header { background: var(--green); }
+ 
   .result-body {
     padding: 18px;
     font-size: 14px;
     line-height: 1.8;
     color: var(--text-dark);
   }
-
-  .result-body p {
-    margin-bottom: 12px;
-  }
-
-  .result-body p:last-child {
-    margin-bottom: 0;
-  }
-
+ 
+  .result-body p { margin-bottom: 10px; }
+  .result-body p:last-child { margin-bottom: 0; }
+ 
   .breakdown-item {
     display: grid;
     grid-template-columns: auto 1fr;
@@ -399,32 +421,36 @@
     padding-bottom: 12px;
     border-bottom: 1px solid rgba(6, 182, 212, 0.2);
   }
-
-  .breakdown-item:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-  }
-
+ 
+  .breakdown-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+ 
   .code-tag {
     background: var(--white);
     border: 1.5px solid var(--navy);
     color: var(--navy);
-    padding: 6px 12px;
+    padding: 5px 10px;
     border-radius: 6px;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
     white-space: nowrap;
     font-family: 'JetBrains Mono', monospace;
   }
-
-  .breakdown-text {
-    color: #1f2937;
+ 
+  .breakdown-text { color: var(--text-dark); font-size: 13px; line-height: 1.7; }
+ 
+  /* DAX code output block */
+  .dax-output {
+    background: #1e293b;
+    border-radius: 8px;
+    padding: 20px;
+    font-family: 'JetBrains Mono', monospace;
     font-size: 13px;
+    color: #e2e8f0;
     line-height: 1.7;
+    white-space: pre-wrap;
+    overflow-x: auto;
   }
-
-  /* Error Box */
+ 
   .error-box {
     background: #fee2e2;
     border: 2px solid #fca5a5;
@@ -435,12 +461,11 @@
     display: none;
     font-weight: 500;
   }
-
-  /* Copy Button */
+ 
   .copy-btn {
     align-self: flex-end;
     padding: 10px 18px;
-    background: linear-gradient(135deg, var(--orange) 0%, #ea580c 100%);
+    background: linear-gradient(135deg, var(--orange), #ea580c);
     border: none;
     border-radius: 8px;
     color: var(--white);
@@ -448,87 +473,94 @@
     font-weight: 700;
     cursor: pointer;
     transition: all 0.2s;
-    margin-top: 12px;
     font-family: 'Poppins', sans-serif;
+    margin-top: 8px;
   }
-
-  .copy-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.2);
-  }
-
-  /* Scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: var(--sky-blue);
-    border-radius: 4px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--sky);
-  }
-
-  /* Footer */
+ 
+  .copy-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(249,115,22,0.25); }
+ 
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--sky-blue); border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--sky); }
+ 
   footer {
     text-align: center;
     padding: 20px;
     color: var(--text-muted);
     font-size: 12px;
-    letter-spacing: 1px;
   }
 </style>
 </head>
 <body>
-
+ 
+<!-- Header -->
 <header>
   <div class="header-content">
     <div class="logo">
       <div class="logo-icon">Σ</div>
-      <div class="logo-text">
-        <div class="logo-title">DAX Explainer</div>
-        <div class="logo-subtitle">Pro Edition</div>
+      <div>
+        <div class="logo-title">DAX Explainer Pro</div>
+        <div class="logo-subtitle">AI-Powered Power BI Assistant</div>
       </div>
     </div>
     <div class="status">
       <div class="status-dot"></div>
-      Ready to Explain
+      Ready
     </div>
   </div>
 </header>
-
+ 
+<!-- Mode Toggle Bar -->
+<div class="mode-bar">
+  <div class="toggle-wrapper">
+    <div class="toggle-label">Mode:</div>
+ 
+    <div class="toggle-switch">
+      <button class="toggle-option dax-to-en active" id="btn-explain" onclick="setMode('explain')">
+        📊 DAX → Plain English
+      </button>
+      <div class="arrow-icon">⇄</div>
+      <button class="toggle-option en-to-dax" id="btn-generate" onclick="setMode('generate')">
+        ✍️ Plain English → DAX
+      </button>
+    </div>
+ 
+    <div class="mode-desc" id="modeDesc">
+      <strong>Explain mode:</strong> Paste a DAX measure, get a plain English explanation.
+    </div>
+  </div>
+</div>
+ 
+<!-- Main Content -->
 <main>
+ 
   <!-- Input Panel -->
   <div class="panel">
-    <div class="panel-header">📊 DAX Measure Input</div>
+    <div class="panel-header mode-explain" id="inputPanelHeader">
+      📊 DAX Measure Input
+    </div>
     <div class="panel-content">
-      <textarea 
-        id="daxInput"
-        placeholder="Paste your DAX measure here...
-
+ 
+      <textarea id="daxInput" placeholder="Paste your DAX measure here...
+ 
 Example:
 Total Sales YoY % = DIVIDE(
   [Total Sales] - CALCULATE([Total Sales], SAMEPERIODLASTYEAR('Date'[Date])),
   CALCULATE([Total Sales], SAMEPERIODLASTYEAR('Date'[Date]))
 )"></textarea>
-
+ 
       <div>
-        <div class="input-label">Quick Examples</div>
-        <div class="examples">
+        <div class="input-label" id="examplesLabel">Quick Examples</div>
+        <div class="examples" id="examplesList">
           <button class="example-btn" onclick="loadExample('yoy')">YoY Growth %</button>
           <button class="example-btn" onclick="loadExample('rank')">RANKX Ranking</button>
           <button class="example-btn" onclick="loadExample('calculate')">CALCULATE Filter</button>
           <button class="example-btn" onclick="loadExample('running')">Running Total</button>
         </div>
       </div>
-
-      <div>
+ 
+      <div id="levelRow">
         <div class="input-label">Explanation Style</div>
         <select id="levelSelect">
           <option value="simple">🟢 Simple (Beginner-friendly)</option>
@@ -536,171 +568,316 @@ Total Sales YoY % = DIVIDE(
           <option value="technical">🔴 Technical (Deep dive)</option>
         </select>
       </div>
-
-      <div class="controls">
-        <button class="btn" id="explainBtn" onclick="explainDAX()">
-          <span class="spinner hidden" id="spinner"></span>
-          <span id="btnText">▶ Explain This DAX</span>
-        </button>
-      </div>
-
+ 
+      <button class="btn btn-navy" id="actionBtn" onclick="handleAction()">
+        <span class="spinner hidden" id="spinner"></span>
+        <span id="btnText">▶ Explain This DAX</span>
+      </button>
+ 
       <div class="error-box" id="errorBox"></div>
     </div>
   </div>
-
+ 
   <!-- Output Panel -->
   <div class="panel">
-    <div class="panel-header">✨ Plain English Explanation</div>
+    <div class="panel-header mode-explain" id="outputPanelHeader">
+      ✨ Plain English Explanation
+    </div>
     <div class="panel-content">
       <div class="output-content">
+ 
         <div id="emptyState" class="empty-state">
-          <div class="empty-icon">📝</div>
-          <div class="empty-text">Paste a DAX measure and click<br><strong>Explain This DAX</strong> to get started</div>
+          <div class="empty-icon" id="emptyIcon">📝</div>
+          <div class="empty-text" id="emptyText">
+            Paste a DAX measure and click<br><strong>Explain This DAX</strong> to get started
+          </div>
         </div>
-
-        <div id="result">
-          <div class="result-section">
-            <div class="result-header">💡 What This Measure Does</div>
-            <div class="result-body" id="summaryText"></div>
-          </div>
-
-          <div class="result-section">
-            <div class="result-header">🔍 Line-by-Line Breakdown</div>
-            <div class="result-body" id="breakdownText"></div>
-          </div>
-
-          <div class="result-section">
-            <div class="result-header">📌 When to Use This</div>
-            <div class="result-body" id="useCaseText"></div>
-          </div>
-
-          <button class="copy-btn" onclick="copyResult()">📋 Copy Explanation</button>
-        </div>
+ 
+        <div id="result"></div>
+ 
       </div>
     </div>
   </div>
+ 
 </main>
-
-<footer>
-  Built with AI • Powered by Claude
-</footer>
-
+ 
+<footer>Built with AI • Powered by Claude</footer>
+ 
 <script>
-  const EXAMPLES = {
-    yoy: `Total Sales YoY % = DIVIDE(
-  [Total Sales] - CALCULATE([Total Sales], SAMEPERIODLASTYEAR('Date'[Date])),
-  CALCULATE([Total Sales], SAMEPERIODLASTYEAR('Date'[Date]))
-)`,
-    rank: `Sales Rank = RANKX(
-  ALL('Products'[ProductName]),
-  [Total Sales],
-  ,
-  DESC,
-  DENSE
-)`,
-    calculate: `Sales in Ontario = CALCULATE(
-  [Total Sales],
-  'Geography'[Province] = "Ontario",
-  'Date'[Year] = 2024
-)`,
-    running: `Running Total Sales = CALCULATE(
-  [Total Sales],
-  FILTER(
-    ALL('Date'[Date]),
-    'Date'[Date] <= MAX('Date'[Date])
-  )
-)`
+  let currentMode = 'explain'; // 'explain' or 'generate'
+ 
+  const EXAMPLES_EXPLAIN = {
+    yoy: `Total Sales YoY % = DIVIDE(\n  [Total Sales] - CALCULATE([Total Sales], SAMEPERIODLASTYEAR('Date'[Date])),\n  CALCULATE([Total Sales], SAMEPERIODLASTYEAR('Date'[Date]))\n)`,
+    rank: `Sales Rank = RANKX(\n  ALL('Products'[ProductName]),\n  [Total Sales],\n  ,\n  DESC,\n  DENSE\n)`,
+    calculate: `Sales in Ontario = CALCULATE(\n  [Total Sales],\n  'Geography'[Province] = "Ontario",\n  'Date'[Year] = 2024\n)`,
+    running: `Running Total Sales = CALCULATE(\n  [Total Sales],\n  FILTER(\n    ALL('Date'[Date]),\n    'Date'[Date] <= MAX('Date'[Date])\n  )\n)`
   };
-
-  function loadExample(key) {
-    document.getElementById('daxInput').value = EXAMPLES[key];
+ 
+  const EXAMPLES_GENERATE = {
+    ex1: 'Show total sales for the current month only',
+    ex2: 'Calculate the percentage of sales compared to total all-time sales',
+    ex3: 'Find the top 5 customers by revenue this year',
+    ex4: 'Compare this year\'s profit vs last year\'s profit'
+  };
+ 
+  function setMode(mode) {
+    currentMode = mode;
+    const isExplain = mode === 'explain';
+ 
+    // Toggle buttons
+    document.getElementById('btn-explain').classList.toggle('active', isExplain);
+    document.getElementById('btn-generate').classList.toggle('active', !isExplain);
+ 
+    // Panel headers
+    const headerClass = isExplain ? 'mode-explain' : 'mode-generate';
+    document.getElementById('inputPanelHeader').className = `panel-header ${headerClass}`;
+    document.getElementById('outputPanelHeader').className = `panel-header ${headerClass}`;
+ 
+    // Panel titles
+    document.getElementById('inputPanelHeader').textContent = isExplain
+      ? '📊 DAX Measure Input'
+      : '✍️ Describe What You Want';
+    document.getElementById('outputPanelHeader').textContent = isExplain
+      ? '✨ Plain English Explanation'
+      : '⚡ Generated DAX Measure';
+ 
+    // Textarea placeholder
+    document.getElementById('daxInput').value = '';
+    document.getElementById('daxInput').placeholder = isExplain
+      ? 'Paste your DAX measure here...\n\nExample:\nTotal Sales YoY % = DIVIDE(\n  [Total Sales] - CALCULATE([Total Sales], SAMEPERIODLASTYEAR(\'Date\'[Date])),\n  CALCULATE([Total Sales], SAMEPERIODLASTYEAR(\'Date\'[Date]))\n)'
+      : 'Describe what you want in plain English...\n\nExamples:\n• "Show total sales for the current month only"\n• "Calculate % of sales vs all-time total"\n• "Find top 5 customers by revenue this year"';
+ 
+    document.getElementById('daxInput').className = isExplain ? '' : 'green-focus';
+ 
+    // Examples
+    document.getElementById('examplesLabel').className = isExplain ? 'input-label' : 'input-label green';
+    const list = document.getElementById('examplesList');
+    if (isExplain) {
+      list.innerHTML = `
+        <button class="example-btn" onclick="loadExample('yoy')">YoY Growth %</button>
+        <button class="example-btn" onclick="loadExample('rank')">RANKX Ranking</button>
+        <button class="example-btn" onclick="loadExample('calculate')">CALCULATE Filter</button>
+        <button class="example-btn" onclick="loadExample('running')">Running Total</button>`;
+    } else {
+      list.innerHTML = `
+        <button class="example-btn green-ex" onclick="loadGenExample('ex1')">Current month sales</button>
+        <button class="example-btn green-ex" onclick="loadGenExample('ex2')">% of total sales</button>
+        <button class="example-btn green-ex" onclick="loadGenExample('ex3')">Top 5 customers</button>
+        <button class="example-btn green-ex" onclick="loadGenExample('ex4')">YoY profit compare</button>`;
+    }
+ 
+    // Level row visibility
+    document.getElementById('levelRow').style.display = isExplain ? 'block' : 'none';
+ 
+    // Action button
+    document.getElementById('actionBtn').className = isExplain ? 'btn btn-navy' : 'btn btn-green';
+    document.getElementById('btnText').textContent = isExplain ? '▶ Explain This DAX' : '⚡ Generate DAX Measure';
+ 
+    // Mode description
+    document.getElementById('modeDesc').innerHTML = isExplain
+      ? '<strong>Explain mode:</strong> Paste a DAX measure, get a plain English explanation.'
+      : '<strong>Generate mode:</strong> Describe what you want in plain English, get ready-to-use DAX.';
+ 
+    // Empty state
+    document.getElementById('emptyIcon').textContent = isExplain ? '📝' : '⚡';
+    document.getElementById('emptyText').innerHTML = isExplain
+      ? 'Paste a DAX measure and click<br><strong>Explain This DAX</strong> to get started'
+      : 'Describe what you need and click<br><strong>Generate DAX Measure</strong> to get started';
+ 
+    // Reset output
+    const result = document.getElementById('result');
+    result.className = '';
+    result.innerHTML = '';
+    document.getElementById('emptyState').style.display = 'flex';
+    document.getElementById('errorBox').style.display = 'none';
   }
-
+ 
+  function loadExample(key) {
+    document.getElementById('daxInput').value = EXAMPLES_EXPLAIN[key];
+  }
+ 
+  function loadGenExample(key) {
+    document.getElementById('daxInput').value = EXAMPLES_GENERATE[key];
+  }
+ 
+  function handleAction() {
+    if (currentMode === 'explain') explainDAX();
+    else generateDAX();
+  }
+ 
   async function explainDAX() {
     const daxCode = document.getElementById('daxInput').value.trim();
     const level = document.getElementById('levelSelect').value;
-    const btn = document.getElementById('explainBtn');
-    const spinner = document.getElementById('spinner');
-    const btnText = document.getElementById('btnText');
-    const errorBox = document.getElementById('errorBox');
-    const result = document.getElementById('result');
-    const emptyState = document.getElementById('emptyState');
-
-    if (!daxCode) {
-      errorBox.textContent = '⚠ Please paste a DAX measure first';
-      errorBox.style.display = 'block';
-      document.getElementById('daxInput').focus();
-      return;
-    }
-
-    btn.disabled = true;
-    spinner.classList.remove('hidden');
-    btnText.style.display = 'none';
-    errorBox.style.display = 'none';
-    result.classList.remove('visible');
-    emptyState.style.display = 'none';
-
+    if (!daxCode) { showError('Please paste a DAX measure first.'); return; }
+ 
+    setLoading(true);
+ 
+    const levelPrompt = {
+      simple: 'Explain using very simple language — assume the reader has never seen DAX before. Use everyday analogies.',
+      intermediate: 'Explain clearly for someone who understands Power BI basics but wants to understand this specific measure deeply.',
+      technical: 'Give a technical deep-dive — explain filter context, row context, evaluation order, and any DAX engine behavior.'
+    }[level];
+ 
+    const systemPrompt = `You are a Power BI and DAX expert. ${levelPrompt}
+ 
+Respond ONLY in this exact JSON format (no markdown):
+{
+  "summary": "2-3 sentence plain English summary of what this measure calculates",
+  "breakdown": [
+    { "code": "FUNCTION_NAME", "explanation": "what this part does" }
+  ],
+  "useCase": "When and why you'd use this measure with a concrete business example."
+}`;
+ 
     try {
       const response = await fetch('/.netlify/functions/explain-dax', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ daxCode, level })
+        body: JSON.stringify({ daxCode, level, mode: 'explain', systemPrompt })
       });
-
-      if (!response.ok) {
-        const errData = await response.json();
-        throw new Error(errData.error || 'API error');
-      }
-
+ 
+      if (!response.ok) throw new Error((await response.json()).error || 'API error');
       const data = await response.json();
-
-      document.getElementById('summaryText').innerHTML = `<p>${escapeHtml(data.summary)}</p>`;
-
-      const breakdown = data.breakdown.map(item => `
-        <div class="breakdown-item">
-          <span class="code-tag">${escapeHtml(item.code)}</span>
-          <span class="breakdown-text">${escapeHtml(item.explanation)}</span>
+ 
+      const html = `
+        <div class="result-section">
+          <div class="result-header">💡 What This Measure Does</div>
+          <div class="result-body"><p>${esc(data.summary)}</p></div>
         </div>
-      `).join('');
-      document.getElementById('breakdownText').innerHTML = breakdown;
-
-      document.getElementById('useCaseText').innerHTML = `<p>${escapeHtml(data.useCase)}</p>`;
-
-      emptyState.style.display = 'none';
-      result.classList.add('visible');
-
-    } catch (error) {
-      errorBox.textContent = '⚠ ' + error.message;
-      errorBox.style.display = 'block';
-      emptyState.style.display = 'flex';
+        <div class="result-section">
+          <div class="result-header">🔍 Line-by-Line Breakdown</div>
+          <div class="result-body">
+            ${data.breakdown.map(i => `
+              <div class="breakdown-item">
+                <span class="code-tag">${esc(i.code)}</span>
+                <span class="breakdown-text">${esc(i.explanation)}</span>
+              </div>`).join('')}
+          </div>
+        </div>
+        <div class="result-section">
+          <div class="result-header">📌 When to Use This</div>
+          <div class="result-body"><p>${esc(data.useCase)}</p></div>
+        </div>
+        <button class="copy-btn" onclick="copyText('explain')">📋 Copy Explanation</button>`;
+ 
+      showResult(html);
+    } catch (e) {
+      showError(e.message);
     } finally {
-      btn.disabled = false;
-      spinner.classList.add('hidden');
-      btnText.style.display = 'block';
+      setLoading(false);
     }
   }
-
-  function escapeHtml(text) {
-    const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
-    return text.replace(/[&<>"']/g, m => map[m]);
+ 
+  async function generateDAX() {
+    const description = document.getElementById('daxInput').value.trim();
+    if (!description) { showError('Please describe what you want first.'); return; }
+ 
+    setLoading(true);
+ 
+    const systemPrompt = `You are a senior Power BI and DAX expert. The user will describe a calculation in plain English and you will generate the correct DAX measure.
+ 
+Respond ONLY in this exact JSON format (no markdown):
+{
+  "measureName": "A clean, descriptive name for the measure",
+  "daxCode": "The full DAX measure code, formatted cleanly with line breaks",
+  "explanation": "2-3 sentences explaining what the measure does and how it works",
+  "notes": "Any important assumptions, required table/column names the user should update, or tips for using this measure"
+}`;
+ 
+    try {
+      const response = await fetch('/.netlify/functions/explain-dax', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ daxCode: description, level: 'intermediate', mode: 'generate', systemPrompt })
+      });
+ 
+      if (!response.ok) throw new Error((await response.json()).error || 'API error');
+      const data = await response.json();
+ 
+      const html = `
+        <div class="result-section green-section">
+          <div class="result-header green-header">⚡ Generated DAX Measure</div>
+          <div class="result-body">
+            <p style="font-size:12px;color:#6b7280;margin-bottom:8px;">MEASURE NAME</p>
+            <p style="font-weight:700;color:#065f46;font-size:15px;margin-bottom:0;">${esc(data.measureName)}</p>
+          </div>
+        </div>
+        <div class="result-section green-section">
+          <div class="result-header green-header">📋 DAX Code — Copy & Paste into Power BI</div>
+          <div class="result-body">
+            <div class="dax-output">${esc(data.daxCode)}</div>
+          </div>
+        </div>
+        <div class="result-section green-section">
+          <div class="result-header green-header">💡 How It Works</div>
+          <div class="result-body"><p>${esc(data.explanation)}</p></div>
+        </div>
+        <div class="result-section green-section">
+          <div class="result-header green-header">📌 Important Notes</div>
+          <div class="result-body"><p>${esc(data.notes)}</p></div>
+        </div>
+        <button class="copy-btn" onclick="copyText('generate')">📋 Copy DAX Code</button>`;
+ 
+      showResult(html);
+    } catch (e) {
+      showError(e.message);
+    } finally {
+      setLoading(false);
+    }
   }
-
-  function copyResult() {
-    const summary = document.getElementById('summaryText').textContent;
-    const breakdown = document.getElementById('breakdownText').innerText;
-    const useCase = document.getElementById('useCaseText').textContent;
-    const full = `WHAT IT DOES:\n${summary}\n\nBREAKDOWN:\n${breakdown}\n\nWHEN TO USE:\n${useCase}`;
-    
-    navigator.clipboard.writeText(full).then(() => {
+ 
+  function showResult(html) {
+    document.getElementById('emptyState').style.display = 'none';
+    const result = document.getElementById('result');
+    result.innerHTML = html;
+    result.className = 'visible';
+  }
+ 
+  function showError(msg) {
+    const box = document.getElementById('errorBox');
+    box.textContent = '⚠ ' + msg;
+    box.style.display = 'block';
+    document.getElementById('emptyState').style.display = 'flex';
+  }
+ 
+  function setLoading(loading) {
+    const btn = document.getElementById('actionBtn');
+    const spinner = document.getElementById('spinner');
+    const btnText = document.getElementById('btnText');
+    btn.disabled = loading;
+    spinner.classList.toggle('hidden', !loading);
+    btnText.style.display = loading ? 'none' : 'block';
+    document.getElementById('errorBox').style.display = 'none';
+    if (loading) {
+      document.getElementById('result').className = '';
+      document.getElementById('result').innerHTML = '';
+      document.getElementById('emptyState').style.display = 'none';
+    }
+  }
+ 
+  function esc(str) {
+    return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
+  }
+ 
+  function copyText(mode) {
+    let text = '';
+    if (mode === 'explain') {
+      const sections = document.querySelectorAll('.result-section');
+      sections.forEach(s => { text += s.querySelector('.result-header').textContent + '\n' + s.querySelector('.result-body').textContent + '\n\n'; });
+    } else {
+      const daxBlock = document.querySelector('.dax-output');
+      text = daxBlock ? daxBlock.textContent : '';
+    }
+    navigator.clipboard.writeText(text.trim()).then(() => {
       const btn = document.querySelector('.copy-btn');
-      const original = btn.textContent;
+      const orig = btn.textContent;
       btn.textContent = '✓ Copied!';
-      setTimeout(() => btn.textContent = original, 2000);
+      setTimeout(() => btn.textContent = orig, 2000);
     });
   }
-
+ 
   document.addEventListener('keydown', e => {
-    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') explainDAX();
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') handleAction();
   });
 </script>
 </body>
